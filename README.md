@@ -1,6 +1,15 @@
 # NavigationView_iOS15
 iOS 15 下 NavigationView和NavigationLink的各种用法
 
+## `NavigationLink isActive` 性能问题。
+
+因为NavigationLink会初始化destination view，如果在一个长List中，就有会有性能问题，即便LazyVStack，即便性能不会有问题，但是也是非理想方法。
+
+比如
+```swift
+NavigationLink(destination: MyTargetView(), isActive: $readyToNavigate, label: {Text("Navigate Link")})
+```
+
 ## 当`NavigationLink`的`isActive`为optional时
 
 ```swift
