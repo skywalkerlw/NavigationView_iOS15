@@ -82,4 +82,23 @@ struct ContentView: View {
         }
     }
 }
+
+ForEach(0 ..< 12) {item in
+    NavigationLink(destination: TransactionsDetailsView()) {
+        VStack {
+            HStack(alignment: .top) {
+                Text("List item")
+            }
+            .padding(EdgeInsets(top: 5, leading: 10, bottom: 5, trailing: 10))
+            .foregroundColor(.black)
+            Divider()
+        }
+    }
+    .simultaneousGesture(TapGesture().onEnded{
+        self.showPlusButton = false
+    })
+        .onAppear(){
+            self.showPlusButton = true
+    }
+}
 ```
