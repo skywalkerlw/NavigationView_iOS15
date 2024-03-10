@@ -53,3 +53,33 @@ public extension View {
     }
 }
 ```
+
+## `NavigationLink`点击后执行一个side effect动作
+
+https://stackoverflow.com/questions/59870199/swiftui-how-to-do-additional-work-when-clicking-a-navigationlink
+
+```swift
+struct ContentView: View {
+    @State private var navIsActive = false
+    
+    var body: some View {
+        HStack {
+            Spacer()
+            
+            NavigationLink(isActive: $navIsActive) {
+                Success()
+                    .navigationBarBackButtonHidden(true)
+            } label: {
+                Text("Finish")
+            }
+            
+            Spacer()
+        }
+        .onChange(of: navIsActive) { newValue in
+            if newValue {
+                print("Sending to Storage")
+            }
+        }
+    }
+}
+```
